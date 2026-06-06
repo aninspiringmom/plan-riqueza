@@ -698,6 +698,30 @@ async function finish(){
   fb.textContent = 'Enviando tu plan...';
   document.getElementById('loading').classList.add('show');
 
+  // Intentar guardar — sin bloquear si falla
+  try { await guardarEnSheets(); } catch(e){ console.warn('Sheets:', e); }
+  try { await suscribirEnConvertKit(); } catch(e){ console.warn('CK:', e); }
+
+  // Siempre mostrar éxito
+  const waMsg = encodeURIComponent(
+    `🌸 *Plan de Riqueza Consciente*\n_An Inspiring Mom_\n\n`+
+    `Acabo de firmar mi compromiso financiero.\n\n`+
+    `🎯 Mis movimientos este mes:\n${state.movimientos.join('\n')}\n\n`+
+    `📥 PDF gratis: ${PDF_URL}\n\n`+
+    `💪 ¡Mi legado empieza hoy!`
+  );
+
+  document.getElementById('btn-pdf').href = PDF_URL || '#';
+  document.getElementById('btn-wa').href  = `https://wa.me/?text=${waMsg}`;
+  document.getElementById('success-msg').textContent =
+    `Revisá tu email ${state.email} — el PDF ya está en camino 🌸`;
+
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('success-box').style.display = '';
+  fb.textContent      = '¡Compromiso firmado! ✓';
+  fb.style.background = '#1a7a4a';
+}
+
   try {
     await Promise.all([
       guardarEnSheets(),
