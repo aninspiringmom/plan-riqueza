@@ -810,35 +810,12 @@ async function finish(){
       })
     });
 
-    // 2. GUARDAR EN AIRTABLE
-    await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Lead_AIM`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${AIRTABLE_TOKEN}`
-      },
-      body: JSON.stringify({
-        fields: {
-          nombre: state.nombre,
-          email: state.email,
-          telefono: state.telefono,
-          tiene_ahorro: state.ahorro,
-          controla_gastos: state.gastos,
-          tiene_inversion: state.inversion,
-          tiene_deudas: state.deudas,
-          emocion_dinero: [...document.querySelectorAll('.chip.on')]
-            .map(c=>c.textContent).join(', '),
-          merecedora: state.merecedora,
-          meta_ingresos: state.meta || '',
-          familia: state.familia,
-          legado: state.legado,
-          movimientos: state.movimientos.join(' | '),
-          ensenanza: state.ensenanza,
-          comprometida: true
-        }
-      })
-    });
-
+    // 2. GUARDAR EN guardarEnSheets()
+   await Promise.all([
+  guardarEnSheets(),
+  suscribirEnConvertKit()
+]);
+    
     // 3. WHATSAPP
     const waMsg = encodeURIComponent(
       `🌸 *Plan de Riqueza Consciente*\n_An Inspiring Mom_\n\n` +
