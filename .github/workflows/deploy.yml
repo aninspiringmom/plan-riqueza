@@ -10,15 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Inject secrets into config
+      - name: Inject secrets
         run: |
           sed -i "s|const CONVERTKIT_API_KEY='';|const CONVERTKIT_API_KEY='${{ secrets.CONVERTKIT_API_KEY }}';|g" index.html
-sed -i "s|const CONVERTKIT_FORM_ID='';|const CONVERTKIT_FORM_ID='${{ secrets.CONVERTKIT_FORM_ID }}';|g" index.html
-sed -i "s|const GOOGLE_SHEET_URL='';|const GOOGLE_SHEET_URL='${{ secrets.GOOGLE_SHEET_URL }}';|g" index.html
-sed -i "s|const PDF_URL='';|const PDF_URL='${{ secrets.PDF_URL }}';|g" index.html
+          sed -i "s|const CONVERTKIT_FORM_ID='';|const CONVERTKIT_FORM_ID='${{ secrets.CONVERTKIT_FORM_ID }}';|g" index.html
+          sed -i "s|const GOOGLE_SHEET_URL='';|const GOOGLE_SHEET_URL='${{ secrets.GOOGLE_SHEET_URL }}';|g" index.html
+          sed -i "s|const PDF_URL='';|const PDF_URL='${{ secrets.PDF_URL }}';|g" index.html
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+      - name: Deploy
+        uses:
