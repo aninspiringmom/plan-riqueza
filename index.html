@@ -8,286 +8,102 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
-  --aim-red: #ba3434;
-  --aim-blue: #185CBA;
-  --aim-light: #E1EFF6;
-  --aim-sky: #97D2FB;
-  --aim-pink: #eb549d;
-  --aim-white: #ffffff;
-  --aim-gray: #f7f8fc;
-  --aim-text: #1a1a2e;
-  --aim-muted: #6b7280;
+  --blue: #185CBA;
+  --pink: #eb549d;
+  --red: #ba3434;
+  --light: #E1EFF6;
+  --sky: #97D2FB;
+  --white: #ffffff;
+  --gray: #f7f8fc;
+  --text: #1a1a2e;
+  --muted: #6b7280;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Nunito', sans-serif;
-  background: var(--aim-gray);
-  min-height: 100vh;
-  padding: 0 0 3rem;
-}
+body { font-family: 'Nunito', sans-serif; background: var(--gray); min-height: 100vh; padding: 0 0 3rem; }
 .wrap { width: 100%; max-width: 480px; margin: 0 auto; }
-.header {
-  background: var(--aim-blue);
-  padding: 2rem 1.5rem 1.5rem;
-  text-align: center;
-  border-radius: 0 0 28px 28px;
-  margin-bottom: 1.5rem;
-}
-.header-badge {
-  display: inline-block;
-  background: var(--aim-pink);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 4px 14px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-}
-.header h1 {
-  font-family: 'Playfair Display', serif;
-  color: #fff;
-  font-size: 22px;
-  line-height: 1.3;
-  margin-bottom: 6px;
-}
-.header p { color: var(--aim-sky); font-size: 13px; }
-.progress-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 1.5rem;
-  margin-bottom: 1.5rem;
-}
-.prog-step {
-  flex: 1; height: 5px; border-radius: 3px;
-  background: #dde8f5; transition: background 0.35s;
-}
-.prog-step.done { background: var(--aim-pink); }
-.prog-step.active { background: var(--aim-blue); }
-.prog-count {
-  font-size: 12px; color: var(--aim-muted);
-  white-space: nowrap; font-weight: 700;
-}
+.header { background: var(--blue); padding: 2rem 1.5rem 1.5rem; text-align: center; border-radius: 0 0 28px 28px; margin-bottom: 1.5rem; }
+.badge { display: inline-block; background: var(--pink); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 10px; }
+.header h1 { font-family: 'Playfair Display', serif; color: #fff; font-size: 22px; line-height: 1.3; margin-bottom: 6px; }
+.header p { color: var(--sky); font-size: 13px; }
+.prog-wrap { display: flex; align-items: center; gap: 6px; padding: 0 1.5rem; margin-bottom: 1.5rem; }
+.prog-step { flex: 1; height: 5px; border-radius: 3px; background: #dde8f5; transition: background 0.35s; }
+.prog-step.done { background: var(--pink); }
+.prog-step.active { background: var(--blue); }
+.prog-count { font-size: 12px; color: var(--muted); white-space: nowrap; font-weight: 700; }
 .step { display: none; padding: 0 1.5rem; }
 .step.active { display: block; }
-.step-header {
-  display: flex; align-items: center;
-  gap: 12px; margin-bottom: 1.25rem;
-}
-.step-icon {
-  width: 40px; height: 40px; border-radius: 50%;
-  display: flex; align-items: center;
-  justify-content: center; font-size: 18px;
-  flex-shrink: 0;
-}
-.si-blue  { background: var(--aim-light); color: var(--aim-blue); }
-.si-pink  { background: #fce9f3; color: var(--aim-pink); }
-.si-sky   { background: #e0f2ff; color: #0e7bc4; }
-.si-red   { background: #fce9e9; color: var(--aim-red); }
-.si-green { background: #e6f7ee; color: #1a7a4a; }
-.step-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px; color: var(--aim-text);
-}
-.step-sub { font-size: 12px; color: var(--aim-muted); margin-top: 2px; }
-.card {
-  background: var(--aim-white);
-  border: 1px solid #e5eaf3;
-  border-radius: 14px;
-  padding: 1rem 1.25rem;
-  margin-bottom: 12px;
-}
-.card-label {
-  font-size: 11px; font-weight: 700;
-  color: var(--aim-blue); text-transform: uppercase;
-  letter-spacing: 0.8px; margin-bottom: 8px;
-}
-.toggle-row { display: flex; gap: 8px; }
-.tog {
-  flex: 1; padding: 10px 6px;
-  border-radius: 10px;
-  border: 1.5px solid #dde8f5;
-  background: transparent;
-  font-size: 13px; font-family: 'Nunito', sans-serif;
-  font-weight: 700; cursor: pointer;
-  color: var(--aim-muted); transition: all 0.2s;
-}
-.tog.yes { border-color: var(--aim-blue); background: var(--aim-light); color: var(--aim-blue); }
-.tog.no  { border-color: var(--aim-red);  background: #fce9e9; color: var(--aim-red); }
+.step-hdr { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+.step-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.si-blue { background: var(--light); color: var(--blue); }
+.si-pink { background: #fce9f3; color: var(--pink); }
+.si-sky  { background: #e0f2ff; color: #0e7bc4; }
+.si-red  { background: #fce9e9; color: var(--red); }
+.si-green{ background: #e6f7ee; color: #1a7a4a; }
+.step-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text); }
+.step-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.card { background: var(--white); border: 1px solid #e5eaf3; border-radius: 14px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+.card-lbl { font-size: 11px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.tog-row { display: flex; gap: 8px; }
+.tog { flex: 1; padding: 10px 6px; border-radius: 10px; border: 1.5px solid #dde8f5; background: transparent; font-size: 13px; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+.tog.yes { border-color: var(--blue); background: var(--light); color: var(--blue); }
+.tog.no  { border-color: var(--red);  background: #fce9e9;      color: var(--red); }
 .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; }
-.chip {
-  padding: 7px 13px; border-radius: 20px;
-  border: 1.5px solid #dde8f5;
-  background: transparent; font-size: 12px;
-  font-family: 'Nunito', sans-serif; font-weight: 600;
-  cursor: pointer; color: var(--aim-muted); transition: all 0.2s;
-}
-.chip.on { border-color: var(--aim-blue); background: var(--aim-light); color: var(--aim-blue); }
-.chip.pink-on { border-color: var(--aim-pink); background: #fce9f3; color: var(--aim-pink); }
-.field {
-  width: 100%;
-  border: 1.5px solid #dde8f5;
-  border-radius: 10px;
-  padding: 11px 14px;
-  font-size: 14px;
-  font-family: 'Nunito', sans-serif;
-  color: var(--aim-text);
-  background: var(--aim-white);
-  resize: none;
-  transition: border-color 0.2s;
-  margin-top: 4px;
-}
-.field:focus { outline: none; border-color: var(--aim-blue); }
-.email-hero {
-  background: linear-gradient(145deg, #fce9f3, var(--aim-light));
-  border-radius: 16px; padding: 1.5rem;
-  text-align: center; margin-bottom: 14px;
-}
-.email-hero-emoji { font-size: 36px; margin-bottom: 8px; }
-.email-hero h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px; color: var(--aim-blue); margin-bottom: 6px;
-}
-.email-hero p { font-size: 12px; color: var(--aim-muted); line-height: 1.6; }
-.input-icon-wrap { position: relative; margin-top: 6px; }
-.input-icon-wrap .field { padding-right: 44px; }
-.input-icon-wrap i {
-  position: absolute; right: 14px; top: 50%;
-  transform: translateY(-50%);
-  color: var(--aim-pink); font-size: 18px; pointer-events: none;
-}
+.chip { padding: 7px 13px; border-radius: 20px; border: 1.5px solid #dde8f5; background: transparent; font-size: 12px; font-family: 'Nunito', sans-serif; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+.chip.on      { border-color: var(--blue); background: var(--light); color: var(--blue); }
+.chip.pink-on { border-color: var(--pink); background: #fce9f3;      color: var(--pink); }
+.field { width: 100%; border: 1.5px solid #dde8f5; border-radius: 10px; padding: 11px 14px; font-size: 14px; font-family: 'Nunito', sans-serif; color: var(--text); background: var(--white); resize: none; transition: border-color 0.2s; margin-top: 4px; }
+.field:focus { outline: none; border-color: var(--blue); }
+.hero { background: linear-gradient(145deg, #fce9f3, var(--light)); border-radius: 16px; padding: 1.5rem; text-align: center; margin-bottom: 14px; }
+.hero-emoji { font-size: 36px; margin-bottom: 8px; }
+.hero h2 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--blue); margin-bottom: 6px; }
+.hero p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.icon-wrap { position: relative; margin-top: 6px; }
+.icon-wrap .field { padding-right: 44px; }
+.icon-wrap i { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--pink); font-size: 18px; pointer-events: none; }
 .perks { margin-top: 12px; }
-.perk {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 0; font-size: 13px; color: var(--aim-text);
-  border-bottom: 1px solid #f0f4fb;
-}
+.perk { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 13px; color: var(--text); border-bottom: 1px solid #f0f4fb; }
 .perk:last-child { border-bottom: none; }
-.perk i { color: var(--aim-pink); font-size: 16px; flex-shrink: 0; }
-.privacy {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 11px; color: var(--aim-muted);
-  justify-content: center; margin-top: 10px;
-}
+.perk i { color: var(--pink); font-size: 16px; flex-shrink: 0; }
+.privacy { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); justify-content: center; margin-top: 10px; }
 .phone-row { display: flex; gap: 8px; margin-top: 4px; }
-.phone-prefix {
-  width: 76px; flex-shrink: 0;
-  border: 1.5px solid #dde8f5;
-  border-radius: 10px; padding: 11px 8px;
-  font-size: 14px; font-family: 'Nunito', sans-serif;
-  color: var(--aim-text); background: var(--aim-white);
-  text-align: center;
-}
-.phone-prefix:focus { outline: none; border-color: var(--aim-blue); }
-.stats-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 10px; margin-bottom: 14px;
-}
-.stat-box {
-  background: #f0f6ff; border-radius: 12px;
-  padding: 14px 10px; text-align: center;
-}
-.stat-val { font-size: 26px; font-weight: 700; color: var(--aim-blue); display: block; }
-.stat-lbl { font-size: 11px; color: var(--aim-muted); margin-top: 2px; }
-.commitment {
-  border: 2px solid var(--aim-pink); border-radius: 14px;
-  padding: 1.25rem; text-align: center; margin-bottom: 14px;
-}
-.commitment p { font-size: 13px; color: var(--aim-muted); line-height: 1.7; }
-.commitment strong { color: var(--aim-pink); }
-.success-box {
-  background: var(--aim-blue); border-radius: 16px;
-  padding: 1.75rem 1.25rem; text-align: center;
-  margin-bottom: 14px; display: none;
-}
-.success-box h2 {
-  font-family: 'Playfair Display', serif;
-  color: #fff; font-size: 20px; margin-bottom: 8px;
-}
-.success-box p { color: var(--aim-sky); font-size: 13px; line-height: 1.6; }
-.btn-row {
-  display: flex; flex-direction: column;
-  gap: 10px; margin-top: 14px;
-}
-.btn-pdf {
-  display: flex; align-items: center;
-  justify-content: center; gap: 8px;
-  background: var(--aim-pink); color: #fff;
-  padding: 13px 20px; border-radius: 12px;
-  font-size: 14px; font-weight: 700;
-  text-decoration: none; font-family: 'Nunito', sans-serif;
-  transition: opacity 0.2s;
-}
-.btn-pdf:hover { opacity: 0.9; }
-.btn-wa {
-  display: flex; align-items: center;
-  justify-content: center; gap: 8px;
-  background: #25d366; color: #fff;
-  padding: 13px 20px; border-radius: 12px;
-  font-size: 14px; font-weight: 700;
-  text-decoration: none; font-family: 'Nunito', sans-serif;
-}
+.prefix { width: 76px; flex-shrink: 0; border: 1.5px solid #dde8f5; border-radius: 10px; padding: 11px 8px; font-size: 14px; font-family: 'Nunito', sans-serif; color: var(--text); background: var(--white); text-align: center; }
+.prefix:focus { outline: none; border-color: var(--blue); }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.stat-box { background: #f0f6ff; border-radius: 12px; padding: 14px 10px; text-align: center; }
+.stat-val { font-size: 26px; font-weight: 700; color: var(--blue); display: block; }
+.stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.commit-box { border: 2px solid var(--pink); border-radius: 14px; padding: 1.25rem; text-align: center; margin-bottom: 14px; }
+.commit-box p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.commit-box strong { color: var(--pink); }
+.success-box { background: var(--blue); border-radius: 16px; padding: 1.75rem 1.25rem; text-align: center; margin-bottom: 14px; display: none; }
+.success-box h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: 20px; margin-bottom: 8px; }
+.success-box p { color: var(--sky); font-size: 13px; line-height: 1.6; }
+.btn-row { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.btn-pdf { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--pink); color: #fff; padding: 13px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none; font-family: 'Nunito', sans-serif; }
+.btn-wa  { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #fff; padding: 13px 20px; border-radius: 12px; font-size: 14px; font-weight: 700; text-decoration: none; font-family: 'Nunito', sans-serif; }
 .nav { display: flex; gap: 10px; padding: 1.25rem 1.5rem 0; }
-.btn-back {
-  padding: 13px 18px; border-radius: 12px;
-  border: 1.5px solid #dde8f5;
-  background: transparent; font-size: 14px;
-  font-family: 'Nunito', sans-serif; font-weight: 700;
-  cursor: pointer; color: var(--aim-muted);
-}
-.btn-next {
-  flex: 1; padding: 13px; border-radius: 12px;
-  border: none; background: var(--aim-blue); color: #fff;
-  font-size: 15px; font-family: 'Nunito', sans-serif;
-  font-weight: 700; cursor: pointer; transition: opacity 0.2s;
-}
+.btn-back { padding: 13px 18px; border-radius: 12px; border: 1.5px solid #dde8f5; background: transparent; font-size: 14px; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; color: var(--muted); }
+.btn-next { flex: 1; padding: 13px; border-radius: 12px; border: none; background: var(--blue); color: #fff; font-size: 15px; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
 .btn-next:hover { opacity: 0.88; }
-.btn-finish {
-  flex: 1; padding: 13px; border-radius: 12px;
-  border: none; background: var(--aim-pink); color: #fff;
-  font-size: 15px; font-family: 'Nunito', sans-serif;
-  font-weight: 700; cursor: pointer;
-}
+.btn-finish { flex: 1; padding: 13px; border-radius: 12px; border: none; background: var(--pink); color: #fff; font-size: 15px; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; }
 .btn-finish:disabled { background: #1a7a4a; cursor: default; }
-.loading-overlay {
-  display: none; position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(24,92,186,0.93);
-  z-index: 999; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center; padding: 2rem;
-}
-.loading-overlay.show { display: flex; }
-.loading-spinner {
-  width: 48px; height: 48px;
-  border: 4px solid rgba(255,255,255,0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 16px;
-}
+.overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(24,92,186,0.93); z-index: 999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+.overlay.show { display: flex; }
+.spinner { width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 16px; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.loading-overlay p { color: #fff; font-size: 15px; font-weight: 600; }
-.loading-overlay span { color: var(--aim-sky); font-size: 13px; margin-top: 6px; display: block; }
-.error-msg {
-  background: #fce9e9; border: 1px solid var(--aim-red);
-  border-radius: 10px; padding: 10px 14px;
-  font-size: 13px; color: var(--aim-red);
-  margin-top: 8px; display: none;
-}
-.aim-foot {
-  text-align: center; padding: 1.5rem 0 0;
-  font-size: 11px; color: var(--aim-muted);
-}
-.aim-foot span { color: var(--aim-pink); font-weight: 700; }
+.overlay p { color: #fff; font-size: 15px; font-weight: 600; }
+.overlay span { color: var(--sky); font-size: 13px; margin-top: 6px; display: block; }
+.err { background: #fce9e9; border: 1px solid var(--red); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--red); margin-top: 8px; display: none; }
+.foot { text-align: center; padding: 1.5rem 0 0; font-size: 11px; color: var(--muted); }
+.foot span { color: var(--pink); font-weight: 700; }
+.mov-list { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.mov-list .chip { text-align: left; border-radius: 10px; padding: 10px 14px; }
 </style>
 </head>
 <body>
 
-<div class="loading-overlay" id="loading">
-  <div class="loading-spinner"></div>
+<div class="overlay" id="overlay">
+  <div class="spinner"></div>
   <p>Preparando tu plan...</p>
   <span>Enviando tu PDF ahora mismo 🌸</span>
 </div>
@@ -295,34 +111,35 @@ body {
 <div class="wrap">
 
   <div class="header">
-    <div class="header-badge">An Inspiring Mom</div>
+    <div class="badge">An Inspiring Mom</div>
     <h1>Mi Plan de Riqueza Consciente</h1>
     <p>6 pasos para construir tu legado financiero desde hoy</p>
   </div>
 
-  <div class="progress-wrap">
+  <div class="prog-wrap">
     <div class="prog-step active" id="ps1"></div>
     <div class="prog-step" id="ps2"></div>
     <div class="prog-step" id="ps3"></div>
     <div class="prog-step" id="ps4"></div>
     <div class="prog-step" id="ps5"></div>
     <div class="prog-step" id="ps6"></div>
-    <span class="prog-count" id="pc">1/6</span>
+    <span class="prog-count" id="pc">1 / 6</span>
   </div>
 
+  <!-- PASO 1: DATOS -->
   <div class="step active" id="step1">
-    <div class="email-hero">
-      <div class="email-hero-emoji">🌸</div>
+    <div class="hero">
+      <div class="hero-emoji">🌸</div>
       <h2>Tu plan financiero empieza aquí</h2>
       <p>Déjame tu información y te envío tu plan completo más un PDF con tips para generar dinero en digital desde hoy.</p>
     </div>
     <div class="card">
-      <div class="card-label">Tu nombre</div>
+      <div class="card-lbl">Tu nombre</div>
       <input id="f-nombre" type="text" class="field" placeholder="¿Cómo te llamas, amiga?">
     </div>
     <div class="card">
-      <div class="card-label">Tu email</div>
-      <div class="input-icon-wrap">
+      <div class="card-lbl">Tu email</div>
+      <div class="icon-wrap">
         <input id="f-email" type="email" class="field" placeholder="tu@email.com">
         <i class="ti ti-mail" aria-hidden="true"></i>
       </div>
@@ -337,27 +154,28 @@ body {
       </div>
     </div>
     <div class="card">
-      <div class="card-label">Tu WhatsApp</div>
+      <div class="card-lbl">Tu WhatsApp</div>
       <div class="phone-row">
-        <input id="f-prefix" type="text" class="phone-prefix" value="+1" placeholder="+1">
-        <input id="f-phone" type="tel" class="field" style="flex:1; margin-top:0;" placeholder="809 000 0000">
+        <input id="f-prefix" type="text" class="prefix" value="+1">
+        <input id="f-phone" type="tel" class="field" style="flex:1;margin-top:0;" placeholder="809 000 0000">
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Qué describe tu situación hoy?</div>
-      <div class="chips">
-        <button class="chip" onclick="oneChip(this,'perfil')">Mamá emprendedora</button>
-        <button class="chip" onclick="oneChip(this,'perfil')">Empleada con negocio</button>
-        <button class="chip" onclick="oneChip(this,'perfil')">Freelancer</button>
-        <button class="chip" onclick="oneChip(this,'perfil')">Solo empleada</button>
-        <button class="chip" onclick="oneChip(this,'perfil')">En transición</button>
+      <div class="card-lbl">¿Qué describe tu situación hoy?</div>
+      <div class="chips" id="chips-perfil">
+        <button class="chip" onclick="oneChip(this,'chips-perfil')">Mamá emprendedora</button>
+        <button class="chip" onclick="oneChip(this,'chips-perfil')">Empleada con negocio</button>
+        <button class="chip" onclick="oneChip(this,'chips-perfil')">Freelancer</button>
+        <button class="chip" onclick="oneChip(this,'chips-perfil')">Solo empleada</button>
+        <button class="chip" onclick="oneChip(this,'chips-perfil')">En transición</button>
       </div>
     </div>
-    <div class="error-msg" id="err1"></div>
+    <div class="err" id="err1"></div>
   </div>
 
+  <!-- PASO 2: PUNTO DE PARTIDA -->
   <div class="step" id="step2">
-    <div class="step-header">
+    <div class="step-hdr">
       <div class="step-icon si-blue"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
       <div>
         <div class="step-title">Mi punto de partida</div>
@@ -365,37 +183,38 @@ body {
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Tengo cuenta de ahorro activa?</div>
-      <div class="toggle-row">
+      <div class="card-lbl">¿Tengo cuenta de ahorro activa?</div>
+      <div class="tog-row">
         <button class="tog" onclick="tog(this,'yes','ahorro')">Sí, la tengo</button>
         <button class="tog" onclick="tog(this,'no','ahorro')">Todavía no</button>
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Controlo mis ingresos y gastos?</div>
-      <div class="toggle-row">
+      <div class="card-lbl">¿Controlo mis ingresos y gastos?</div>
+      <div class="tog-row">
         <button class="tog" onclick="tog(this,'yes','gastos')">Sí, lo llevo</button>
         <button class="tog" onclick="tog(this,'no','gastos')">No muy bien</button>
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Tengo alguna inversión activa?</div>
-      <div class="toggle-row">
+      <div class="card-lbl">¿Tengo alguna inversión activa?</div>
+      <div class="tog-row">
         <button class="tog" onclick="tog(this,'yes','inversion')">Sí, invierto</button>
         <button class="tog" onclick="tog(this,'no','inversion')">Aún no</button>
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Tengo deudas activas?</div>
-      <div class="toggle-row">
+      <div class="card-lbl">¿Tengo deudas activas?</div>
+      <div class="tog-row">
         <button class="tog" onclick="tog(this,'yes','deudas')">Sí, tengo</button>
         <button class="tog" onclick="tog(this,'no','deudas')">No tengo</button>
       </div>
     </div>
   </div>
 
+  <!-- PASO 3: RELACIÓN CON EL DINERO -->
   <div class="step" id="step3">
-    <div class="step-header">
+    <div class="step-hdr">
       <div class="step-icon si-pink"><i class="ti ti-heart" aria-hidden="true"></i></div>
       <div>
         <div class="step-title">Mi relación con el dinero</div>
@@ -403,32 +222,33 @@ body {
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Qué te enseñaron sobre el dinero de niña?</div>
+      <div class="card-lbl">¿Qué te enseñaron sobre el dinero de niña?</div>
       <textarea id="f-ensenanza" class="field" rows="3" placeholder="Ej: que era escaso, que no se hablaba de dinero..."></textarea>
     </div>
     <div class="card">
-      <div class="card-label">El dinero me genera...</div>
-      <div class="chips">
-        <button class="chip" onclick="toggleChip(this)">Ansiedad</button>
-        <button class="chip" onclick="toggleChip(this)">Seguridad</button>
-        <button class="chip" onclick="toggleChip(this)">Indiferencia</button>
-        <button class="chip" onclick="toggleChip(this)">Motivación</button>
-        <button class="chip" onclick="toggleChip(this)">Miedo</button>
-        <button class="chip" onclick="toggleChip(this)">Poder</button>
-        <button class="chip" onclick="toggleChip(this)">Libertad</button>
+      <div class="card-lbl">El dinero me genera...</div>
+      <div class="chips" id="chips-emocion">
+        <button class="chip" onclick="multiChip(this)">Ansiedad</button>
+        <button class="chip" onclick="multiChip(this)">Seguridad</button>
+        <button class="chip" onclick="multiChip(this)">Indiferencia</button>
+        <button class="chip" onclick="multiChip(this)">Motivación</button>
+        <button class="chip" onclick="multiChip(this)">Miedo</button>
+        <button class="chip" onclick="multiChip(this)">Poder</button>
+        <button class="chip" onclick="multiChip(this)">Libertad</button>
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Te sientes merecedora de abundancia?</div>
-      <div class="toggle-row">
+      <div class="card-lbl">¿Te sientes merecedora de abundancia?</div>
+      <div class="tog-row">
         <button class="tog" onclick="tog(this,'yes','merecedora')">Sí, lo merezco</button>
         <button class="tog" onclick="tog(this,'no','merecedora')">Todavía lo trabajo</button>
       </div>
     </div>
   </div>
 
+  <!-- PASO 4: VISIÓN -->
   <div class="step" id="step4">
-    <div class="step-header">
+    <div class="step-hdr">
       <div class="step-icon si-sky"><i class="ti ti-telescope" aria-hidden="true"></i></div>
       <div>
         <div class="step-title">Mi visión financiera</div>
@@ -436,26 +256,27 @@ body {
       </div>
     </div>
     <div class="card">
-      <div class="card-label">Meta de ingresos en 12 meses</div>
-      <div class="chips">
-        <button class="chip" onclick="oneChip(this,'meta')">$1K–$2.5K/mes</button>
-        <button class="chip" onclick="oneChip(this,'meta')">$2.5K–$5K/mes</button>
-        <button class="chip" onclick="oneChip(this,'meta')">$5K–$10K/mes</button>
-        <button class="chip" onclick="oneChip(this,'meta')">$10K+/mes</button>
+      <div class="card-lbl">Meta de ingresos en 12 meses</div>
+      <div class="chips" id="chips-meta">
+        <button class="chip" onclick="oneChip(this,'chips-meta')">$1K–$2.5K/mes</button>
+        <button class="chip" onclick="oneChip(this,'chips-meta')">$2.5K–$5K/mes</button>
+        <button class="chip" onclick="oneChip(this,'chips-meta')">$5K–$10K/mes</button>
+        <button class="chip" onclick="oneChip(this,'chips-meta')">$10K+/mes</button>
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Qué quiero que el dinero le dé a mi familia?</div>
-      <textarea id="f-familia" class="field" rows="3" placeholder="Ej: seguridad, educación de calidad, libertad, viajes..."></textarea>
+      <div class="card-lbl">¿Qué quiero que el dinero le dé a mi familia?</div>
+      <textarea id="f-familia" class="field" rows="3" placeholder="Ej: seguridad, educación de calidad, libertad..."></textarea>
     </div>
     <div class="card">
-      <div class="card-label">¿Qué legado financiero quiero dejar?</div>
-      <textarea id="f-legado" class="field" rows="3" placeholder="Ej: que mis hijos nunca tengan que preocuparse por dinero..."></textarea>
+      <div class="card-lbl">¿Qué legado financiero quiero dejar?</div>
+      <textarea id="f-legado" class="field" rows="3" placeholder="Ej: que mis hijos nunca tengan que preocuparse..."></textarea>
     </div>
   </div>
 
+  <!-- PASO 5: MOVIMIENTOS -->
   <div class="step" id="step5">
-    <div class="step-header">
+    <div class="step-hdr">
       <div class="step-icon si-red"><i class="ti ti-rocket" aria-hidden="true"></i></div>
       <div>
         <div class="step-title">Mis 3 movimientos este mes</div>
@@ -463,26 +284,27 @@ body {
       </div>
     </div>
     <div class="card">
-      <div class="card-label" style="color:var(--aim-pink);">Selecciona tus acciones</div>
-      <div style="display:flex; flex-direction:column; gap:8px; margin-top:6px;">
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Abrir una cuenta de ahorro</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Registrar mis gastos por 7 días</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Leer un libro de finanzas personales</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Hablar con un asesor financiero</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Eliminar una suscripción que no uso</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Crear mi presupuesto mensual</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Investigar opciones de inversión</button>
-        <button class="chip" style="text-align:left; border-radius:10px;" onclick="movChip(this)">Apartar el 5% de mis ingresos</button>
+      <div class="card-lbl" style="color:var(--pink);">Selecciona tus acciones</div>
+      <div class="mov-list" id="mov-list">
+        <button class="chip" onclick="movChip(this)">Abrir una cuenta de ahorro</button>
+        <button class="chip" onclick="movChip(this)">Registrar mis gastos por 7 días</button>
+        <button class="chip" onclick="movChip(this)">Leer un libro de finanzas personales</button>
+        <button class="chip" onclick="movChip(this)">Hablar con un asesor financiero</button>
+        <button class="chip" onclick="movChip(this)">Eliminar una suscripción que no uso</button>
+        <button class="chip" onclick="movChip(this)">Crear mi presupuesto mensual</button>
+        <button class="chip" onclick="movChip(this)">Investigar opciones de inversión</button>
+        <button class="chip" onclick="movChip(this)">Apartar el 5% de mis ingresos</button>
       </div>
     </div>
     <div class="card">
-      <div class="card-label">¿Algo adicional?</div>
+      <div class="card-lbl">¿Algo adicional?</div>
       <textarea id="f-extra" class="field" rows="2" placeholder="Tu movimiento personalizado..."></textarea>
     </div>
   </div>
 
+  <!-- PASO 6: COMPROMISO -->
   <div class="step" id="step6">
-    <div class="step-header">
+    <div class="step-hdr">
       <div class="step-icon si-green"><i class="ti ti-award" aria-hidden="true"></i></div>
       <div>
         <div class="step-title">Mi compromiso</div>
@@ -490,7 +312,7 @@ body {
       </div>
     </div>
     <div class="stats-grid" id="stats-grid"></div>
-    <div class="commitment">
+    <div class="commit-box">
       <p>Yo, <strong id="cn">amiga</strong>, me comprometo a tomar el control de mis finanzas — no solo por mí, sino por el ejemplo que le doy a mis hijos y el legado que estoy construyendo.</p>
     </div>
     <div class="success-box" id="success-box">
@@ -519,243 +341,198 @@ body {
     </button>
   </div>
 
-  <div class="aim-foot">
+  <div class="foot">
     <p>© <span>An Inspiring Mom</span> · by Bianna Peña</p>
   </div>
+
 </div>
 
 <script>
-const CONVERTKIT_API_KEY='';
-const CONVERTKIT_FORM_ID='';
-const GOOGLE_SHEET_URL='';
-const PDF_URL='';
+// ================================================
+// 🔴 REEMPLAZA ESTOS 4 VALORES CON LOS TUYOS
+// ================================================
+var CK_KEY   = 'yTL-Rqqgg05sH2qXCg5CHA';
+var CK_FORM  = '9529456';
+var SHEET    = 'https://script.google.com/macros/s/AKfycbxAVpQbbp2qr0IbnO6UzroB7Utlb2ExyAy19WQzGkVACRhQeANJF-6PBPA_eCftaJdjCw/exec';
+var PDF      = 'https://drive.google.com/file/d/17kkMjp7KDfl3Wpl0NSgkaG_Tut7RxJ2Y/view?usp=drive_link';
+// ================================================
 
-const state = {
+var state = {
   nombre:'', email:'', telefono:'', perfil:'',
   ahorro:false, gastos:false, inversion:false, deudas:false,
-  ensenanza:'', emocion:'', merecedora:false,
+  ensenanza:'', emociones:'', merecedora:false,
   meta:'', familia:'', legado:'',
-  movimientos:[], extra:'', comprometida:false
+  movimientos:[], extra:''
 };
 
-let cur = 1;
-const total = 6;
-const selectedMovs = new Set();
+var cur = 1;
+var total = 6;
+var movSet = [];
 
-function updateUI(){
-  for(let i=1;i<=total;i++){
-    const ps = document.getElementById('ps'+i);
-    ps.className = 'prog-step'+(i<cur?' done':(i===cur?' active':''));
-    document.getElementById('step'+i).className = 'step'+(i===cur?' active':'');
+function ui(){
+  for(var i=1;i<=total;i++){
+    document.getElementById('ps'+i).className =
+      'prog-step'+(i<cur?' done':i===cur?' active':'');
+    document.getElementById('step'+i).className =
+      'step'+(i===cur?' active':'');
   }
-  document.getElementById('pc').textContent = cur+'/'+total;
-  document.getElementById('btn-back').style.display = cur>1?'':'none';
-  document.getElementById('btn-next').style.display = cur<total?'':'none';
-  document.getElementById('btn-finish').style.display = cur===total?'':'none';
-  if(cur===total) buildCommitment();
+  document.getElementById('pc').textContent = cur+' / '+total;
+  document.getElementById('btn-back').style.display  = cur>1?'':'none';
+  document.getElementById('btn-next').style.display  = cur<total?'':'none';
+  document.getElementById('btn-finish').style.display= cur===total?'':'none';
+  if(cur===total) buildStats();
   window.scrollTo(0,0);
 }
 
-function showError(id, msg){
-  const el = document.getElementById(id);
-  if(el){ el.textContent = msg; el.style.display = 'block'; }
-}
-function hideError(id){
-  const el = document.getElementById(id);
-  if(el){ el.style.display = 'none'; }
+function buildStats(){
+  var yes = document.querySelectorAll('.tog.yes').length;
+  document.getElementById('stats-grid').innerHTML =
+    '<div class="stat-box"><span class="stat-val">'+yes+'</span><span class="stat-lbl">bases ya activas</span></div>'+
+    '<div class="stat-box"><span class="stat-val">'+movSet.length+'</span><span class="stat-lbl">acciones este mes</span></div>';
 }
 
-function validateStep(){
+function showErr(id, msg){
+  var el = document.getElementById(id);
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideErr(id){
+  document.getElementById(id).style.display = 'none';
+}
+
+function validate(){
   if(cur===1){
-    hideError('err1');
-    const nm = document.getElementById('f-nombre').value.trim();
-    const em = document.getElementById('f-email').value.trim();
-    const ph = document.getElementById('f-phone').value.trim();
-    if(!nm){ showError('err1','Por favor escribe tu nombre, amiga 🌸'); return false; }
-    if(!em||!em.includes('@')||!em.includes('.')){ showError('err1','Necesito un email válido para enviarte el PDF'); return false; }
-    if(!ph){ showError('err1','Necesito tu WhatsApp para enviarte el resumen'); return false; }
+    hideErr('err1');
+    var nm = document.getElementById('f-nombre').value.trim();
+    var em = document.getElementById('f-email').value.trim();
+    var ph = document.getElementById('f-phone').value.trim();
+    if(!nm){ showErr('err1','Por favor escribe tu nombre, amiga 🌸'); return false; }
+    if(!em||!em.includes('@')){ showErr('err1','Necesito un email válido para enviarte el PDF'); return false; }
+    if(!ph){ showErr('err1','Necesito tu WhatsApp para enviarte el resumen'); return false; }
     state.nombre   = nm;
     state.email    = em;
-    state.telefono = (document.getElementById('f-prefix').value.trim()||'+1') + ph.replace(/\D/g,'');
+    state.telefono = (document.getElementById('f-prefix').value||'+1') + ph.replace(/\D/g,'');
     document.getElementById('cn').textContent = nm;
   }
   return true;
 }
 
-function next(){
-  if(!validateStep()) return;
-  if(cur<total){ cur++; updateUI(); }
-}
-function prev(){
-  if(cur>1){ cur--; updateUI(); }
-}
+function next(){ if(validate() && cur<total){ cur++; ui(); } }
+function prev(){ if(cur>1){ cur--; ui(); } }
 
 function tog(btn, val, key){
-  btn.closest('.toggle-row').querySelectorAll('.tog').forEach(b=>b.className='tog');
+  var row = btn.closest('.tog-row');
+  row.querySelectorAll('.tog').forEach(function(b){ b.className='tog'; });
   btn.classList.add(val==='yes'?'yes':'no');
   state[key] = val==='yes';
 }
 
-function oneChip(btn, group){
-  const parent = btn.closest('.chips')||btn.parentElement;
-  parent.querySelectorAll('.chip').forEach(b=>b.classList.remove('on','pink-on'));
+function oneChip(btn, groupId){
+  document.getElementById(groupId)
+    .querySelectorAll('.chip')
+    .forEach(function(b){ b.classList.remove('on','pink-on'); });
   btn.classList.add('on');
 }
 
-function toggleChip(btn){ btn.classList.toggle('on'); }
+function multiChip(btn){ btn.classList.toggle('on'); }
 
 function movChip(btn){
+  var txt = btn.textContent.trim();
   if(btn.classList.contains('pink-on')){
     btn.classList.remove('pink-on');
-    selectedMovs.delete(btn.textContent.trim());
-  } else if(selectedMovs.size<3){
+    movSet = movSet.filter(function(m){ return m!==txt; });
+  } else if(movSet.length<3){
     btn.classList.add('pink-on');
-    selectedMovs.add(btn.textContent.trim());
+    movSet.push(txt);
   }
 }
 
-function buildCommitment(){
-  const yesCount = document.querySelectorAll('.tog.yes').length;
-  document.getElementById('stats-grid').innerHTML = `
-    <div class="stat-box">
-      <span class="stat-val">${yesCount}</span>
-      <span class="stat-lbl">bases ya activas</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-val">${selectedMovs.size}</span>
-      <span class="stat-lbl">acciones este mes</span>
-    </div>`;
-}
-
-async function guardarEnSheets(){
-  if(!GOOGLE_SHEET_URL) return;
-  const emociones = [...document.querySelectorAll('#step3 .chip.on')]
-    .map(c=>c.textContent.trim()).join(', ');
-  const perfilSel = document.querySelector('#step1 .chip.on')?.textContent.trim()||'';
-  const metaSel   = document.querySelector('#step4 .chip.on')?.textContent.trim()||'';
-  await fetch(GOOGLE_SHEET_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
+function guardarSheets(){
+  if(!SHEET||SHEET.indexOf('REEMPLAZA')>-1) return Promise.resolve();
+  return fetch(SHEET,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
     body: JSON.stringify({
       nombre:          state.nombre,
       email:           state.email,
       telefono:        state.telefono,
-      perfil:          perfilSel,
+      perfil:          state.perfil,
       tiene_ahorro:    state.ahorro,
       controla_gastos: state.gastos,
       tiene_inversion: state.inversion,
       tiene_deudas:    state.deudas,
-      emocion_dinero:  emociones,
+      emocion_dinero:  state.emociones,
       merecedora:      state.merecedora,
-      meta_ingresos:   metaSel,
+      meta_ingresos:   state.meta,
       familia:         state.familia,
       legado:          state.legado,
-      movimientos:     state.movimientos.join(' | '),
+      movimientos:     movSet.join(' | '),
       ensenanza:       state.ensenanza,
       extra:           state.extra,
       comprometida:    true
     })
-  });
+  }).catch(function(){});
 }
 
-async function suscribirEnConvertKit(){
-  if(!CONVERTKIT_API_KEY||!CONVERTKIT_FORM_ID) return;
-  const perfilSel = document.querySelector('#step1 .chip.on')?.textContent.trim()||'';
-  const metaSel   = document.querySelector('#step4 .chip.on')?.textContent.trim()||'';
-  const resp = await fetch(
-    `https://api.convertkit.com/v3/forms/${CONVERTKIT_FORM_ID}/subscribe`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        api_key:    CONVERTKIT_API_KEY,
-        first_name: state.nombre,
-        email:      state.email,
-        fields: {
-          telefono:      state.telefono,
-          perfil:        perfilSel,
-          meta_ingresos: metaSel,
-          movimientos:   state.movimientos.join(' | ')
-        }
-      })
-    }
-  );
-  if(!resp.ok) throw new Error('ConvertKit error: '+resp.status);
-  return resp.json();
+function suscribirCK(){
+  if(!CK_KEY||CK_KEY.indexOf('REEMPLAZA')>-1) return Promise.resolve();
+  return fetch('https://api.convertkit.com/v3/forms/'+CK_FORM+'/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      api_key:    CK_KEY,
+      first_name: state.nombre,
+      email:      state.email,
+      fields:{
+        telefono:      state.telefono,
+        perfil:        state.perfil,
+        meta_ingresos: state.meta,
+        movimientos:   movSet.join(' | ')
+      }
+    })
+  }).catch(function(){});
 }
 
-async function finish(){
-  state.ensenanza    = document.getElementById('f-ensenanza').value.trim();
-  state.familia      = document.getElementById('f-familia').value.trim();
-  state.legado       = document.getElementById('f-legado').value.trim();
-  state.extra        = document.getElementById('f-extra').value.trim();
-  state.movimientos  = [...selectedMovs];
-  state.comprometida = true;
+function finish(){
+  state.ensenanza = document.getElementById('f-ensenanza').value.trim();
+  state.familia   = document.getElementById('f-familia').value.trim();
+  state.legado    = document.getElementById('f-legado').value.trim();
+  state.extra     = document.getElementById('f-extra').value.trim();
 
-  const fb = document.getElementById('btn-finish');
+  var perfChip = document.querySelector('#chips-perfil .chip.on');
+  state.perfil = perfChip ? perfChip.textContent.trim() : '';
+
+  var metaChip = document.querySelector('#chips-meta .chip.on');
+  state.meta = metaChip ? metaChip.textContent.trim() : '';
+
+  var emocChips = document.querySelectorAll('#chips-emocion .chip.on');
+  state.emociones = Array.from(emocChips).map(function(c){ return c.textContent.trim(); }).join(', ');
+
+  var fb = document.getElementById('btn-finish');
   fb.disabled = true;
   fb.textContent = 'Enviando tu plan...';
-  document.getElementById('loading').classList.add('show');
+  document.getElementById('overlay').classList.add('show');
 
-  // Intentar guardar — sin bloquear si falla
-  try { await guardarEnSheets(); } catch(e){ console.warn('Sheets:', e); }
-  try { await suscribirEnConvertKit(); } catch(e){ console.warn('CK:', e); }
-
-  // Siempre mostrar éxito
-  const waMsg = encodeURIComponent(
-    `🌸 *Plan de Riqueza Consciente*\n_An Inspiring Mom_\n\n`+
-    `Acabo de firmar mi compromiso financiero.\n\n`+
-    `🎯 Mis movimientos este mes:\n${state.movimientos.join('\n')}\n\n`+
-    `📥 PDF gratis: ${PDF_URL}\n\n`+
-    `💪 ¡Mi legado empieza hoy!`
-  );
-
-  document.getElementById('btn-pdf').href = PDF_URL || '#';
-  document.getElementById('btn-wa').href  = `https://wa.me/?text=${waMsg}`;
-  document.getElementById('success-msg').textContent =
-    `Revisá tu email ${state.email} — el PDF ya está en camino 🌸`;
-
-  document.getElementById('loading').classList.remove('show');
-  document.getElementById('success-box').style.display = '';
-  fb.textContent      = '¡Compromiso firmado! ✓';
-  fb.style.background = '#1a7a4a';
-}
-
-  try {
-    await Promise.all([
-      guardarEnSheets(),
-      suscribirEnConvertKit()
-    ]);
-
-    const waMsg = encodeURIComponent(
-      `🌸 *Plan de Riqueza Consciente*\n_An Inspiring Mom_\n\n`+
-      `Acabo de firmar mi compromiso financiero.\n\n`+
-      `🎯 Mis movimientos este mes:\n${state.movimientos.join('\n')}\n\n`+
-      `📥 PDF gratis: ${PDF_URL}\n\n`+
-      `💪 ¡Mi legado empieza hoy!`
+  Promise.all([guardarSheets(), suscribirCK()]).then(function(){
+    var waMsg = encodeURIComponent(
+      '🌸 *Plan de Riqueza Consciente*\n_An Inspiring Mom_\n\n'+
+      'Acabo de firmar mi compromiso financiero.\n\n'+
+      '🎯 Mis movimientos este mes:\n'+movSet.join('\n')+'\n\n'+
+      '📥 PDF gratis: '+PDF+'\n\n'+
+      '💪 ¡Mi legado empieza hoy!'
     );
-
-    document.getElementById('btn-pdf').href = PDF_URL;
-    document.getElementById('btn-wa').href  = `https://wa.me/?text=${waMsg}`;
+    document.getElementById('btn-pdf').href = PDF;
+    document.getElementById('btn-wa').href  = 'https://wa.me/?text='+waMsg;
     document.getElementById('success-msg').textContent =
-      `Revisá tu email ${state.email} — el PDF ya está en camino 🌸`;
-
-    document.getElementById('loading').classList.remove('show');
+      'Revisá tu email '+state.email+' — el PDF ya está en camino 🌸';
+    document.getElementById('overlay').classList.remove('show');
     document.getElementById('success-box').style.display = '';
     fb.textContent      = '¡Compromiso firmado! ✓';
     fb.style.background = '#1a7a4a';
-
-  } catch(err){
-    console.error('Error:', err);
-    document.getElementById('loading').classList.remove('show');
-    fb.disabled    = false;
-    fb.textContent = 'Firmar mi compromiso ✨';
-    alert('Hubo un error. Intenta de nuevo, amiga 🌸');
-  }
+  });
 }
 
-updateUI();
+ui();
 </script>
 </body>
 </html>
