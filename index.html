@@ -718,41 +718,41 @@ function buildCommitment(){
     </div>`;
 }
 
-async function guardarEnAirtable(){
+const GOOGLE_SHEET_URL='Value: https://script.google.com/macros/s/AKfycbwhSRn6rJumkZFI35tsiDsIA7sgfwUndUD2idaqmAZdVzZFnIQF897P-iVw77ia0G8iIA/exec';
+
+async function guardarEnSheets(){
   const emociones = [...document.querySelectorAll('#step3 .chip.on')]
     .map(c => c.textContent.trim()).join(', ');
-  const perfilSeleccionado = document.querySelector('#step1 .chip.on')?.textContent.trim() || '';
-  const metaSeleccionada   = document.querySelector('#step4 .chip.on')?.textContent.trim() || '';
+  const perfilSeleccionado = document.querySelector('#step1 .chip.on')
+    ?.textContent.trim() || '';
+  const metaSeleccionada = document.querySelector('#step4 .chip.on')
+    ?.textContent.trim() || '';
 
-  const resp = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Lead_AIM`, {
+  const resp = await fetch(GOOGLE_SHEET_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${AIRTABLE_TOKEN}`
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      fields: {
-        nombre:          state.nombre,
-        email:           state.email,
-        telefono:        state.telefono,
-        perfil:          perfilSeleccionado,
-        tiene_ahorro:    state.ahorro,
-        controla_gastos: state.gastos,
-        tiene_inversion: state.inversion,
-        tiene_deudas:    state.deudas,
-        emocion_dinero:  emociones,
-        merecedora:      state.merecedora,
-        meta_ingresos:   metaSeleccionada,
-        familia:         state.familia,
-        legado:          state.legado,
-        movimientos:     state.movimientos.join(' | '),
-        ensenanza:       state.ensenanza,
-        extra:           state.extra,
-        comprometida:    true
-      }
+      nombre:          state.nombre,
+      email:           state.email,
+      telefono:        state.telefono,
+      perfil:          perfilSeleccionado,
+      tiene_ahorro:    state.ahorro,
+      controla_gastos: state.gastos,
+      tiene_inversion: state.inversion,
+      tiene_deudas:    state.deudas,
+      emocion_dinero:  emociones,
+      merecedora:      state.merecedora,
+      meta_ingresos:   metaSeleccionada,
+      familia:         state.familia,
+      legado:          state.legado,
+      movimientos:     state.movimientos.join(' | '),
+      ensenanza:       state.ensenanza,
+      extra:           state.extra,
+      comprometida:    true
     })
   });
-  if(!resp.ok) throw new Error('Airtable error: ' + resp.status);
+
+  if(!resp.ok) throw new Error('Sheets error: ' + resp.status);
   return resp.json();
 }
 
