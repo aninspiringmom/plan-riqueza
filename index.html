@@ -603,11 +603,11 @@ body {
 // ============================================
 // 🔴 REEMPLAZA ESTOS 5 VALORES CON LOS TUYOS
 // ============================================
-const CONVERTKIT_API_KEY  = 'TU_API_KEY_CONVERTKIT';
-const CONVERTKIT_FORM_ID  = 'TU_FORM_ID_CONVERTKIT';
+const CONVERTKIT_API_KEY  = 'yTL-Rqqgg05sH2qXCg5CHA';
+const CONVERTKIT_FORM_ID  = '9529456';
 const AIRTABLE_TOKEN      = 'TU_TOKEN_AIRTABLE';
 const AIRTABLE_BASE_ID    = 'TU_BASE_ID_AIRTABLE';
-const PDF_URL             = 'TU_LINK_PDF_GOOGLE_DRIVE';
+const PDF_URL             = 'https://drive.google.com/file/d/17kkMjp7KDfl3Wpl0NSgkaG_Tut7RxJ2Y/view?usp=sharing';
 // ============================================
 
 const state = {
@@ -780,12 +780,12 @@ async function suscribirEnConvertKit(){
 }
 
 async function finish(){
-  state.ensenanza    = document.getElementById('f-ensenanza').value.trim();
-  state.familia      = document.getElementById('f-familia').value.trim();
-  state.legado       = document.getElementById('f-legado').value.trim();
-  state.extra        = document.getElementById('f-extra').value.trim();
-  state.movimientos  = [...selectedMovs];
-  state.comprometida = true;
+  state.ensenanza   = document.getElementById('f-ensenanza').value;
+  state.familia     = document.getElementById('f-familia').value;
+  state.legado      = document.getElementById('f-legado').value;
+  state.extra       = document.getElementById('f-extra').value;
+  state.movimientos = [...selectedMovs];
+  state.comprometida= true;
 
   const fb = document.getElementById('btn-finish');
   fb.disabled = true;
@@ -793,38 +793,77 @@ async function finish(){
   document.getElementById('loading').classList.add('show');
 
   try {
-    await Promise.all([
-      guardarEnAirtable(),
-      suscribirEnConvertKit()
-    ]);
+    // 1. SUSCRIBIR EN CONVERTKIT
+    await fetch(`https://api.convertkit.com/v3/forms/${CONVERTKIT_FORM_ID}/subscribe`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        api_key: CONVERTKIT_API_KEY,
+        first_name: state.nombre,
+        email: state.email,
+        fields: {
+          telefono: state.telefono,
+          meta_ingresos: state.meta || '',
+          movimientos: state.movimientos.join(' | '),
+          perfil: document.querySelector('.chip.on')?.textContent || ''
+        }
+      })
+    });
 
+    // 2. GUARDAR EN AIRTABLE
+    await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Lead_AIM`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${AIRTABLE_TOKEN}`
+      },
+      body: JSON.stringify({
+        fields: {
+          nombre: state.nombre,
+          email: state.email,
+          telefono: state.telefono,
+          tiene_ahorro: state.ahorro,
+          controla_gastos: state.gastos,
+          tiene_inversion: state.inversion,
+          tiene_deudas: state.deudas,
+          emocion_dinero: [...document.querySelectorAll('.chip.on')]
+            .map(c=>c.textContent).join(', '),
+          merecedora: state.merecedora,
+          meta_ingresos: state.meta || '',
+          familia: state.familia,
+          legado: state.legado,
+          movimientos: state.movimientos.join(' | '),
+          ensenanza: state.ensenanza,
+          comprometida: true
+        }
+      })
+    });
+
+    // 3. WHATSAPP
     const waMsg = encodeURIComponent(
-      `🌸 *Plan de Riqueza Consciente*\n` +
-      `_An Inspiring Mom · by Bianna Peña_\n\n` +
+      `🌸 *Plan de Riqueza Consciente*\n_An Inspiring Mom_\n\n` +
       `Acabo de firmar mi compromiso financiero.\n\n` +
-      `🎯 *Mis movimientos este mes:*\n` +
-      `${state.movimientos.map((m,i)=>`${i+1}. ${m}`).join('\n')}\n\n` +
-      `📥 *Mi PDF regalo:* ${PDF_URL}\n\n` +
+      `🎯 Mis movimientos este mes:\n${state.movimientos.join('\n')}\n\n` +
+      `📥 PDF gratis: ${PDF_URL}\n\n` +
       `💪 ¡Mi legado empieza hoy!`
     );
 
     document.getElementById('btn-pdf').href = PDF_URL;
-    document.getElementById('btn-wa').href  = `https://wa.me/?text=${waMsg}`;
+    document.getElementById('btn-wa').href = `https://wa.me/?text=${waMsg}`;
     document.getElementById('success-msg').textContent =
       `Revisá tu email ${state.email} — el PDF ya está en camino 🌸`;
 
     document.getElementById('loading').classList.remove('show');
     document.getElementById('success-box').style.display = '';
-
-    fb.textContent       = '¡Compromiso firmado! ✓';
-    fb.style.background  = '#1a7a4a';
+    fb.textContent = '¡Compromiso firmado! ✓';
+    fb.style.background = '#1a7a4a';
 
   } catch(err){
-    console.error('Error:', err);
     document.getElementById('loading').classList.remove('show');
-    fb.disabled    = false;
+    console.error('Error:', err);
+    fb.disabled = false;
     fb.textContent = 'Firmar mi compromiso ✨';
-    alert('Hubo un problema enviando tu plan. Intenta de nuevo, amiga 🌸');
+    alert('Hubo un error. Intenta de nuevo, amiga 🌸');
   }
 }
 
